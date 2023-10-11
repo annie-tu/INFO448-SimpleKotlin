@@ -23,6 +23,10 @@ class HomeworkTest {
     @Test fun when_Bonjour() {
         assertEquals(whenFn("Bonjour"), "Say what?")
     }
+    // new test 1
+    @Test fun whenRandom() {
+        assertEquals(whenFn("Random"), "I don't understand")
+    }
     @Test fun when_ints() {
         val when_tests = listOf(
             0 to "zero",
@@ -43,7 +47,9 @@ class HomeworkTest {
             Pair(0, 0) to 0,
             Pair(1, 2) to 3,
             Pair(-2, 2) to 0,
-            Pair(123, 456) to 579
+            Pair(123, 456) to 579,
+            // new test 2
+            Pair(-1000, 200) to -800
         )
         for ( (k,v) in add_tests) {
             assertEquals(add(k.first, k.second), v)
@@ -55,7 +61,10 @@ class HomeworkTest {
             Pair(0, 0) to 0,
             Pair(2, 1) to 1,
             Pair(-2, 2) to -4,
-            Pair(456, 123) to 333
+            Pair(456, 123) to 333,
+            // new test 3
+            Pair(-1000, 200) to -1200
+
         )
         for ( (k,v) in sub_tests) {
             assertEquals(sub(k.first, k.second), v)
@@ -76,6 +85,19 @@ class HomeworkTest {
         assertEquals("Ted", p1.firstName )
         assertEquals(48, p1.age)
         assertEquals("[Person firstName:Ted lastName:Neward age:48]", p1.debugString)
+
+        // new test 4
+        val p2 = Person("Annie", "Tu", 20)
+        assertEquals("Annie", p2.firstName )
+        assertEquals(20, p2.age)
+        assertEquals("[Person firstName:Annie lastName:Tu age:20]", p2.debugString)
+
+        // new test 5
+        val p3 = Person("aaa", "zz", -3)
+        assertEquals("aaa", p3.firstName )
+        assertEquals(-3, p3.age)
+        assertEquals("[Person firstName:aaa lastName:zz age:-3]", p3.debugString)
+
     }
 
     // =================
@@ -87,6 +109,10 @@ class HomeworkTest {
 
         val currEx = assertFailsWith(IllegalArgumentException::class) {
             Money(10, "YEN")
+        }
+        // new test 6
+        val bothEx = assertFailsWith(IllegalArgumentException::class) {
+            Money(-1, "SKW")
         }
     }
     val tenUSD = Money(10, "USD")
